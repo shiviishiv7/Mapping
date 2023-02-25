@@ -28,8 +28,8 @@ public class Student {
     private Address address;
 //
 //    @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    private Laptop laptop;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    private Laptop laptop;
 //    @JsonIgnore
 //    @OneToMany(mappedBy = "student")
 //    List<Book> bookList = new ArrayList<>();

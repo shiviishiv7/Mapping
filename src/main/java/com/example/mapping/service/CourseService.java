@@ -56,10 +56,13 @@ public class CourseService {
 
     public Course addCourseToStudent(CourseStudentDto course) throws RecordNotFound {
         Student byStudent = studentService.findByStudent(course.getStudentId());
+
         Optional<Course> optionalCourse = courseRepo.findById(course.getCourseId());
         if(optionalCourse.isPresent()){
+
             Course course1 = optionalCourse.get();
             List<Student> studentList = new ArrayList<>();
+
             studentList.add(byStudent);
             course1.setStudentList(studentList);
             Course save = courseRepo.save(course1);
@@ -70,11 +73,14 @@ public class CourseService {
 
     public void addStudentToCourse(String studentId, String courseId) throws RecordNotFound {
         Optional<Course> optionalCourse = this.courseRepo.findById(courseId);
+
+
         if(optionalCourse.isPresent()){
             Student student = this.studentService.findByStudent(studentId);
 
             Course course = optionalCourse.get();
-            course.getStudentList().add(student);
+            List<Student> studentList = course.getStudentList();
+            studentList.add(student);
             courseRepo.save(course);
 
         }

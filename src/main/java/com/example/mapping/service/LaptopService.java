@@ -28,20 +28,21 @@ public class LaptopService {
 
     public Laptop addLaptop(LaptopDto laptopDto) throws RecordNotFound {
         Student byStudent = studentService.findByStudent(laptopDto.getStudentID());
-        Laptop Laptop = new Laptop();
+        Laptop laptop = new Laptop();
         String ID = UUID.randomUUID().toString();
 
-        Laptop.setID(ID);
-        Laptop.setName(laptopDto.getName());
-        Laptop.setBrand(laptopDto.getBrand());
+        laptop.setID(ID);
+        laptop.setName(laptopDto.getName());
+        laptop.setBrand(laptopDto.getBrand());
 //        Laptop.se(byStudent);
-        Laptop.setPrice(laptopDto.getPrice());
+        laptop.setPrice(laptopDto.getPrice());
+        laptop.setStudent(byStudent);
+//        byStudent.setLaptop(Laptop);
 
-        byStudent.setLaptop(Laptop);
-
-//        Laptop __Laptop = laptopRepo.save(Laptop);
-        Student save = studentRepo.save(byStudent);
-        return save.getLaptop();
+        Laptop __Laptop = laptopRepo.save(laptop);
+//        Student save = studentRepo.save(byStudent);
+//        return save;
+        return __Laptop;
     }
 
     public Laptop findByLaptop(String laptopId) throws RecordNotFound {

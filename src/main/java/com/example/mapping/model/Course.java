@@ -20,6 +20,6 @@ public class Course {
     private String description;
     private String duration;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     List<Student> studentList = new ArrayList<>();
 }
